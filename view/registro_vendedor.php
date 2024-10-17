@@ -8,26 +8,27 @@ session_start();
     <title>CraftPlace - Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" type="image/png" href="./assets/images/icons/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/MagnificPopup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+</head>
 </head>
 
 <style>
     .container-image {
-        background-image: url('images/tetera.jpg');
+        background-image: url('assets/images/tetera.jpg');
     }
 
     .login {
@@ -47,7 +48,7 @@ session_start();
                 <nav class="limiter-menu-desktop container-fluid">
                     <!-- Logo desktop -->
                     <a href="/marketplace" class="logo">
-                        <img src="images/craftplace-logo.png" alt="IMG-LOGO">
+                        <img src="assets/images/craftplace-logo.png" alt="IMG-LOGO">
                     </a>
                 </nav>
             </div>
@@ -57,7 +58,7 @@ session_start();
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="/marketplace/"><img src="images/craftplace-logo.png" alt="IMG-LOGO"></a>
+                <a href="/marketplace/"><img src="assets/images/craftplace-logo.png" alt="IMG-LOGO"></a>
             </div>
         </div>
 
@@ -175,7 +176,7 @@ session_start();
     <script src="vendor/daterangepicker/moment.min.js"></script>
     <script src="vendor/daterangepicker/daterangepicker.js"></script>
     <script src="vendor/slick/slick.min.js"></script>
-    <script src="js/slick-custom.js"></script>
+    <script src="assets/js/slick-custom.js"></script>
     <script src="vendor/parallax100/parallax100.js"></script>
 
     <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
@@ -185,7 +186,7 @@ session_start();
 
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 
