@@ -87,7 +87,7 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="nombre">Nombre completo *</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombre" placeholder="Nombre completo">
+                                            <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombre" placeholder="Nombre completo" required="">
                                             <small id="nombreHelp" class="form-text text-muted"></small>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="email">Email *</label>
-                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email">
+                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email" required="">
                                             <small id="emailHelp" class="form-text text-muted">Email válido, se confirmara con un correo electrónico</small>
                                         </div>
                                     </div>
@@ -107,7 +107,8 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="password">Contraseña *</label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                            <input type="password" class="form-control" id="psw" placeholder="Contraseña" required="">
+                                            <input type="hidden" class="form-control" id="password" name="password" placeholder="Contraseña" required="">
                                             <small id="passwordHelp" class="form-text text-muted">Contraseña de 8 digitos como mínimo</small>
                                         </div>
                                     </div>
@@ -117,7 +118,7 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="direccion">Dirección</label>
-                                            <input type="text" class="form-control" id="direccion" name="direccion" aria-describedby="direccion" placeholder="Dirección">
+                                            <input type="text" class="form-control" id="direccion" name="direccion" aria-describedby="direccion" placeholder="Dirección" required="">
                                             <small id="direccionHelp" class="form-text text-muted"></small>
                                         </div>
                                     </div>
@@ -127,7 +128,7 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="telefono">Teléfono</label>
-                                            <input type="text" class="form-control" id="telefono" name="telefono" aria-describedby="telefono" placeholder="Teléfono">
+                                            <input type="text" class="form-control" id="telefono" name="telefono" aria-describedby="telefono" placeholder="Teléfono" required="">
                                             <small id="telefonoHelp" class="form-text text-muted"></small>
                                         </div>
                                     </div>
@@ -147,13 +148,15 @@ session_start();
                                     </div>
                                     <!-- Div para mostrar la respuesta (alert) -->
                                     <?php
-                                    if (isset($_REQUEST['mensaje'])): ?>
+                                    if (isset($_SESSION['mensaje_error'])): ?>
                                         <div class="col-12 text-center">
                                             <div class="alert alert-danger m-t-18 w-100" role="alert">
-                                                <?= $_REQUEST['mensaje']?>
+                                                <?= $_SESSION['mensaje_error'] ?>
                                             </div>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif;
+                                    unset($_SESSION['mensaje_error']);
+                                    ?>
                                 </div>
                             </form>
                         </div>
@@ -187,6 +190,12 @@ session_start();
     <script src="assets/js/main.js"></script>
     <script src="assets/js/crypto-js.min.js"></script>
     <script src="assets/js/funciones.js"></script>
+
+    <script>
+        $(function() {
+            document.getElementById("nombre").focus();
+        });
+    </script>
 
 </body>
 

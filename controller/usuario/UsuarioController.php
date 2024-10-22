@@ -1,4 +1,5 @@
 <?php
+session_start();
 // controller/usuario/UsuarioController.php
 
 echo 'Current working directory \'controller/usuario/UsuarioController.php\': ' . getcwd();
@@ -31,11 +32,12 @@ class UsuarioController
             session_start();
             $_SESSION["id"] = $validarUsuario["id"];
             $_SESSION["email"] = $validarUsuario["correo_electronico"];
-            $_SESSION["nombreCompleto"] = $validarUsuario["nombre_completo"];
+            $_SESSION["nombre_completo"] = $validarUsuario["nombre_completo"];
+            $_SESSION["sesion"] = "true";
             header('Location: ../../view/home.php');
         } else {
-            $response_message = "Usuario ó contraseña incorrectos.";
-            header('Location: ../../view/login.php?mensaje=' . $response_message);
+            $_SESSION['mensaje_error'] = "Usuario ó contraseña incorrectos.";
+            header('Location: ../../view/login.php');
         }
     }
 
@@ -51,16 +53,19 @@ class UsuarioController
         
 
         if ($verificacion != null) {
-            header('Location: ../../view/registro.php?mensaje=El usuario ' . $nombre . ' ya existe, escriba uno diferente para continuar el registro');
+            $_SESSION['mensaje_error'] = 'El usuario ' . $nombre . ' ya existe, escriba uno diferente para continuar el registro';
+            header('Location: ../../view/registro.php');
         } else {
             //INSERTAR UN USUARIO NUEVO
             echo "insertar un nuevo usuario";
             $insert = $this->usuarioModel->insertarUsuario($nombre, $email, $password, $direccion, $telefono);
 
             if ($insert != null) {
-                header('Location: ../../view/login.php?mensaje=Usuario  ' . $nombre . ' creado con exito!');
+                $_SESSION['mensaje_error'] = 'Usuario  ' . $nombre . ' creado con exito!';
+                header('Location: ../../view/login.php');
             } else {
-                header('Location: ../../view/registro.php?mensaje=Hubo un error al crear el usuario, intente de nuevo.');
+                $_SESSION['mensaje_error'] = 'Hubo un error al crear el usuario, intente de nuevo.';
+                header('Location: ../../view/registro.php');
             }
         }
     }

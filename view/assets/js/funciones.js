@@ -1,5 +1,6 @@
 function cifrarMD5()
 {
-    var inputContra = document.getElementById("password");
-    inputContra.value= CryptoJS.MD5(inputContra.value);
+    var inputContra = document.getElementById("psw");
+    var contra = document.getElementById("password");
+    contra.value= CryptoJS.MD5(inputContra.value);
 }

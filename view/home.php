@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0);
 session_start();
 ?>
 <!DOCTYPE html>
@@ -92,19 +93,41 @@ session_start();
                             <li>
                                 <a href="login_vendedor.php">Vender</a>
                             </li>
+                            <?php
+                            if (!isset($_SESSION['sesion'])) { ?>
+                                <li>
+                                    <a href="login.php">Iniciar Sesion</a>
+                                </li>
 
-                            <li>
-                                <a href="login.php">Iniciar Sesion</a>
-                            </li>
 
-                            <li>
-                                <a href="registro.php">Registrarse</a>
-                            </li>
+                                <li>
+                                    <a href="registro.php">Registrarse</a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
+                        <ul class="main-menu">
+
+
+                            <li>
+                                <a href="#">
+                                    <?php if (isset($_SESSION['sesion'])) {
+                                        echo "Bienvenido, " . $_SESSION['nombre_completo'];
+                                    } ?>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Perfil</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#logoutModal">Cerrar Sesion</a></li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+
+
                         <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
                         </div>
@@ -168,29 +191,27 @@ session_start();
                     </span> -->
                 </li>
                 <li>
-                                <a href="#">Categorias</a>
-                            </li>
-
-                            <li>
-                                <a href="#">Favoritos</a>
-                            </li>
-
-                            <li>
-                                <a href="login-vendedor.php">Vender</a>
-                            </li>
-
-                            <li>
-                                <a href="login.php">Iniciar Sesion</a>
-                            </li>
-
-                            <li>
-                                <a href="registro.php">Registrarse</a>
-                            </li>
-
-                <li>
-                    <a href="assets/html/shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+                    <a href="#">Categorias</a>
                 </li>
 
+                <li>
+                    <a href="#">Favoritos</a>
+                </li>
+
+                <li>
+                    <a href="login-vendedor.php">Vender</a>
+                </li>
+                <?php
+                if (!isset($_SESSION['sesion'])) { ?>
+                    <li>
+                        <a href="login.php">Iniciar Sesion</a>
+                    </li>
+
+
+                    <li>
+                        <a href="registro.php">Registrarse</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
 
@@ -1057,6 +1078,26 @@ session_start();
             </div>
         </div>
     </div>
+
+    <!-- Modal Logout-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Listo para salir?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Presione "Salir" para cerrar la sesion.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Salir</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
 
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/animsition/js/animsition.min.js"></script>

@@ -87,7 +87,7 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="email">Email *</label>
-                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email">
+                                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email" required="">
                                             <small id="emailHelp" class="form-text text-muted"></small>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="password">Contraseña *</label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required="">
                                         </div>
                                         <div class="form-group">
                                             <a href="recuperar_password.php">Olvidaste tu contraseña?</a>
@@ -153,6 +153,12 @@ session_start();
     <script src="assets/js/main.js"></script>
     <script src="assets/js/crypto-js.min.js"></script>
     <script src="assets/js/funciones.js"></script>
+
+    <script>
+        $(function() {
+            document.getElementById("email").focus();
+        });
+    </script>
 
 </body>
 
