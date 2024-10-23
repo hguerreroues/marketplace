@@ -17,6 +17,7 @@ class UsuarioController
         $this->usuarioModel = new Usuario();
     }
 
+    
     public function validarUsuario()
     {
         $email = $_REQUEST['email'];
@@ -38,6 +39,7 @@ class UsuarioController
             header('Location: ../../view/login.php?mensaje=' . $response_message);
         }
     }
+
 
     public function InsertarUsuario()
     {
