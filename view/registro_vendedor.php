@@ -82,7 +82,8 @@ session_start();
 
                                 </div>
                             </div>
-                            <form>
+                            <form action="../controller/usuario/vendedorController.php" method="POST">
+                            <input type="hidden" name="action" id="action" value="registro">
                                 <div class="row m-3">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -156,6 +157,15 @@ session_start();
                                             <a href="recuperar_password.php">Olvidaste tu contraseña?</a>
                                         </div>
                                     </div>
+                                    <!-- Div para mostrar la respuesta (alert) -->
+                                    <?php
+                                    if (isset($_REQUEST['mensaje'])): ?>
+                                        <div class="col-12 text-center">
+                                            <div class="alert alert-danger m-t-18 w-100" role="alert">
+                                                <?= $_REQUEST['mensaje']?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </form>
                         </div>

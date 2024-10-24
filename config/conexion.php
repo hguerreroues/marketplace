@@ -16,10 +16,16 @@ class Conexion
 
     public function __construct()
     {
-        $this->host = 'infoavance.com';
+        /* $this->host = 'infoavance.com';
         $this->db_name = 'craftplace';
         $this->username = 'infoavance';
         $this->password = '12F0A7A2Ce3!';
+        $this->charset = 'utf8mb4'; */
+
+        $this->host = 'localhost';
+        $this->db_name = 'craftplace';
+        $this->username = 'root';
+        $this->password = '';
         $this->charset = 'utf8mb4';
     }
 

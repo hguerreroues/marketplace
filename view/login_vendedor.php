@@ -84,7 +84,9 @@ session_start();
 
                                 </div>
                             </div>
-                            <form action="dashboard.php">
+                            <!-- <form action="dashboard.php"> -->
+                            <form action="../controller/usuario/vendedorController.php" method="POST">
+                            <input type="hidden" name="action" id="action" value="login">
                                 <div class="row m-3">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -111,6 +113,14 @@ session_start();
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn stext-101 cl0 size-101 bg1 bor1 hov-btn1 btn-block btn-lg">Iniciar sesión</button>
                                     </div>
+                                    <?php
+                                    if (isset($_REQUEST['mensaje'])): ?>
+                                        <div class="col-12 text-center">
+                                            <div class="alert alert-danger m-t-18 w-100" role="alert">
+                                                <?= $_REQUEST['mensaje']?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </form>
                         </div>
