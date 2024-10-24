@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../config/ruta.php";
 //echo 'Current working directory: ' . getcwd();
 //echo '<br>Real path to file: ' . realpath('../controller/usuario/UsuarioController.php') . '<br>';
 ?>
@@ -81,7 +82,7 @@ session_start();
                             </div>
 
                             <!-- Formulario de iniciar sesion con usuario registrado -->
-                            <form action="../controller/usuario/UsuarioController.php" method="POST">
+                            <form action="../controller/UsuarioController.php" method="POST">
                                 <input type="hidden" name="action" id="action" value="login">
                                 <div class="row m-3">
                                     <div class="col-12">
@@ -97,7 +98,8 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="password">Contraseña *</label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required="">
+                                            <input type="password" class="form-control" id="psw" placeholder="Contraseña" required="">
+                                            <input type="hidden" id="password" name="password">
                                         </div>
                                         <div class="form-group">
                                             <a href="recuperar_password.php">Olvidaste tu contraseña?</a>
@@ -109,15 +111,17 @@ session_start();
                                     <div class="col-12 text-center">
                                         <button type="submit" onclick="cifrarMD5();" class="btn stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 btn-block btn-lg">Iniciar sesión</button>
                                     </div>
-                                    <!-- Div para mostrar la respuesta (alert) -->
-                                    <?php
-                                    if (isset($_REQUEST['mensaje'])): ?>
+                                   <!-- Div para mostrar la respuesta (alert) -->
+                                   <?php
+                                    if (isset($_SESSION['mensaje_error'])): ?>
                                         <div class="col-12 text-center">
                                             <div class="alert alert-danger m-t-18 w-100" role="alert">
-                                                <?= $_REQUEST['mensaje']?>
+                                                <?= $_SESSION['mensaje_error'] ?>
                                             </div>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif;
+                                    unset($_SESSION['mensaje_error']);
+                                    ?>
                                 </div>
 
 

@@ -81,7 +81,7 @@ session_start();
                             </div>
 
                             <!-- Formulario de registrar un nuevo usuario -->
-                            <form action="../controller/usuario/UsuarioController.php" method="POST">
+                            <form action="../controller/UsuarioController.php" method="POST">
                                 <input type="hidden" name="action" id="action" value="registro">
                                 <div class="row m-3">
                                     <div class="col-12">

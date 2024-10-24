@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../config/ruta.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,10 +28,6 @@ session_start();
 </head>
 
 <style>
-
-
-
-
     .container-image {
         background-image: url('assets/images/jarrones.jpg');
     }
@@ -84,7 +81,8 @@ session_start();
 
                                 </div>
                             </div>
-                            <form action="dashboard.php">
+                            <form action="../controller/VendedorController.php" method="POST">
+                                <input type="hidden" name="action" id="action" value="login">
                                 <div class="row m-3">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -99,7 +97,8 @@ session_start();
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="password">Contraseña *</label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                            <input type="password" class="form-control" id="psw" placeholder="Contraseña" required="">
+                                            <input type="hidden" id="password" name="password">
                                         </div>
                                         <div class="form-group">
                                             <a href="recuperar_password.php">Olvidaste tu contraseña?</a>
@@ -109,8 +108,19 @@ session_start();
 
                                 <div class="row m-3 p-t-40 p-b-40">
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn stext-101 cl0 size-101 bg1 bor1 hov-btn1 btn-block btn-lg">Iniciar sesión</button>
+                                        <button type="submit" onclick="cifrarMD5();" class="btn stext-101 cl0 size-101 bg1 bor1 hov-btn1 btn-block btn-lg">Iniciar sesión</button>
                                     </div>
+                                    <!-- Div para mostrar la respuesta (alert) -->
+                                    <?php
+                                    if (isset($_SESSION['mensaje_error'])): ?>
+                                        <div class="col-12 text-center">
+                                            <div class="alert alert-danger m-t-18 w-100" role="alert">
+                                                <?= $_SESSION['mensaje_error'] ?>
+                                            </div>
+                                        </div>
+                                    <?php endif;
+                                    unset($_SESSION['mensaje_error']);
+                                    ?>
                                 </div>
                             </form>
                         </div>
@@ -142,6 +152,14 @@ session_start();
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/crypto-js.min.js"></script>
+    <script src="assets/js/funciones.js"></script>
+
+    <script>
+        $(function() {
+            document.getElementById("email").focus();
+        });
+    </script>
 
 </body>
 

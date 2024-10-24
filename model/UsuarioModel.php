@@ -1,8 +1,8 @@
 <?php
 // model/Usuario.php
 echo 'Current working directory \'model/Usuario.php\' :' . getcwd();
-echo '<br>Real path to file: ' . realpath('../../config/conexion.php') . '<br>';
-require_once("../../config/conexion.php");
+echo '<br>Real path to file: ' . realpath('../config/conexion.php') . '<br>';
+require_once("../config/conexion.php");
 
 class Usuario extends Conexion
 {
