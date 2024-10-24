@@ -130,7 +130,7 @@ $ListaProductos = $producto->obtenerProductosPorVendedor($_SESSION['id']);
                                                     <td class="text-center"><?= $producto['id_categoria']; ?></td>
                                                     <td class="text-right pr-3"><?= $producto['descuento']; ?></td>
                                                     <!-- <td class="text-center pr-3"><img src="../view/assets/images/tetera-china.jpg" alt="<?= $producto['nombre']; ?>" style="height: 240px;"></td> -->
-                                                    <td class="text-center pr-3"><img src="<?= $producto['url_imagen']; ?>" alt="<?= $producto['nombre']; ?>" class="img-thumbnail"></td>
+                                                    <td class="text-center pr-3"><img src="<?= $producto['url_imagen']; ?>" alt="<?= $producto['nombre']; ?>" style="height: 240px;"></td>
                                                 <?php endforeach; ?>
 
 
