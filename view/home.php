@@ -8,6 +8,9 @@ $producto = new Producto();
 $categoria = new Categoria();
 $ListaCategorias = $categoria->obtenerCategorias();
 $ListaProductos = $producto->obtenerTodosLosProductos();
+
+if (!$_SESSION['total_productos']) $_SESSION['total_productos'] = 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -270,9 +273,9 @@ $ListaProductos = $producto->obtenerTodosLosProductos();
                             <div class="block2-pic hov-img0">
                                 <img src="<?= $producto['url_imagen'] ?>" alt="<?= $producto['descripcion'] ?>">
 
-                                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                <button type="button" data-id="<?= $producto['id'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Ver detalle
-                                </a>
+                                </button>
                             </div>
 
                             <div class="block2-txt flex-w flex-t p-t-14">
@@ -314,6 +317,66 @@ $ListaProductos = $producto->obtenerTodosLosProductos();
     <!-- Modal detalle de productos -->
     <?php include "modal_detalle.php" ?>
 
+    <script>
+        function verProducto(id) {
+            var idProducto = id;
+            console.log(idProducto);
+            $.ajax({
+                url: '../controller/ProductoController.php', // Archivo PHP que obtiene el producto
+                type: 'POST',
+                data: {
+                    id: id,
+                    action: 'obtenerId'
+                }, // Enviar el ID del producto
+                dataType: 'json', // Esperamos un JSON como respuesta
+                success: function(response) {
+                    // Muestra los detalles del producto en la consola o en el HTML
+                    if (response.estado == 'Exito') {
+                        $("#idProductoModal1").val(response.data[0].id);
+                        $("#nombreProductoModal1").text(response.data[0].nombre);
+                        $("#precioProductoModal1").text('$' + response.data[0].precio_lista);
+                        $("#descripcionProductoModal1").text(response.data[0].descripcion);
+                        $("#imgModal1").attr("src", response.data[0].url_imagen);
+                        $('#hrefModal1').attr('href', response.data[0].url_imagen);
+                        $('#slick-active').attr('src', response.data[0].url_imagen);
+                    }
+                    console.log("Producto:", response);
+                    // Puedes mostrar los datos en el HTML según tus necesidades
+
+                },
+                error: function() {
+                    alert("Hubo un error en la solicitud.");
+                }
+            });
+
+        }
+
+        function agregarCarrito(id, cantidad, precio, nombre, url) {
+            //console.log(idProducto);
+            $.ajax({
+                url: '../controller/ProductoController.php', // Archivo PHP que obtiene el producto
+                type: 'POST',
+                data: {
+                    id: id,
+                    cantidad: cantidad,
+                    precio: precio,
+                    nombre: nombre,
+                    url: url,
+                    action: 'agregarCarrito'
+                }, // Enviar el ID del producto
+                success: function(response) {
+                    console.log("Total Productos:", response);
+                    $(".js-show-cart").attr("data-notify", response);
+                    // Puedes mostrar los datos en el HTML según tus necesidades
+
+                },
+                error: function() {
+                    alert("Hubo un error en la solicitud.");
+                }
+            });
+
+        }
+    </script>
 
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/animsition/js/animsition.min.js"></script>
@@ -380,9 +443,20 @@ $ListaProductos = $producto->obtenerTodosLosProductos();
         /*---------------------------------------------*/
         //Alerta, agregado al carrito de compras
         $('.js-addcart-detail').each(function() {
-            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+            var nameProduct = $(this).parent().parent().parent().parent().parent().find('.js-name-detail').html();
             $(this).on('click', function() {
-                swal(nameProduct, "Esta agregado al carrito !", "success");
+                const id = $("#idProductoModal1").val();
+                const cantidad = $("#cantidadProductoModal1").val();
+                const precio = $("#precioProductoModal1").text();
+                const nombre = $("#nombreProductoModal1").text();
+                const url = $("#imgModal1").attr("src");
+                console.log("id=" + id + ", cantidad=" + cantidad, ", precio=" + precio, ", nombre=" + nombre, ", url=" + url);
+                agregarCarrito(id, cantidad, precio, nombre, url);
+                swal(nombre, "Esta agregado al carrito !", "success").then((value) => {
+                    // Recargar la página al hacer clic en "OK"
+                    location.reload();
+                });
+
             });
         });
     </script>

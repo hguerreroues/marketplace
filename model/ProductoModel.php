@@ -7,6 +7,7 @@ require_once("../config/conexion.php");
 
 class Producto extends Conexion
 {
+    private $idProducto;
     private $nombre;
     private $descripcion;
     private $cantidad;
@@ -85,6 +86,16 @@ class Producto extends Conexion
         $sql = "SELECT * FROM producto WHERE id_vendedor = ?";
         $stmt = $this->conexion->prepare($sql);  // Usar prepare en lugar de query
         $stmt->execute([$this->idVendedor]);  // Ejecutar pasando el arreglo de parámetros
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);  // fetchAll con 'All' en mayúscula
+        return $resultado;
+    }
+
+    public function obtenerProductosPorId(string $idProducto)
+    {
+        $this->idProducto=$idProducto;
+        $sql = "SELECT * FROM producto WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);  // Usar prepare en lugar de query
+        $stmt->execute([$this->idProducto]);  // Ejecutar pasando el arreglo de parámetros
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);  // fetchAll con 'All' en mayúscula
         return $resultado;
     }

@@ -43,7 +43,7 @@ include "../config/ruta.php";
             <div class="wrap-menu-desktop">
                 <nav class="limiter-menu-desktop container-fluid">
                     <!-- Logo desktop -->
-                    <a href="/marketplace" class="logo">
+                    <a href="/marketplace/" class="logo">
                         <img src="assets/images/craftplace-logo.png" alt="IMG-LOGO">
                     </a>
                 </nav>
@@ -54,7 +54,7 @@ include "../config/ruta.php";
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="/marketplace"><img src="assets/images/craftplace-logo.png" alt="IMG-LOGO"></a>
+                <a href="/marketplace/"><img src="assets/images/craftplace-logo.png" alt="IMG-LOGO"></a>
             </div>
         </div>
 

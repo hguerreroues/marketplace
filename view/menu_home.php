@@ -28,7 +28,7 @@
         <nav class="limiter-menu-desktop container">
 
             <!-- Logo desktop -->
-            <a href="#" class="logo">
+            <a href="../../marketplace/" class="logo">
                 <img src="./assets/images/craftplace-logo.png" alt="IMG-LOGO">
             </a>
 
@@ -36,7 +36,7 @@
             <div class="menu-desktop">
                 <ul class="main-menu">
                     <li class="active-menu">
-                        <a href="#">Inicio</a>
+                        <a href="../view/home.php">Inicio</a>
                     </li>
 
                     <li>
@@ -47,11 +47,12 @@
                         <a href="#">Favoritos</a>
                     </li>
 
-                    <li>
-                        <a href="login_vendedor.php">Vender</a>
-                    </li>
                     <?php
                     if (!isset($_SESSION['sesion'])) { ?>
+                        <li>
+                            <a href="login_vendedor.php">Vender</a>
+                        </li>
+
                         <li>
                             <a href="login.php">Iniciar Sesion</a>
                         </li>
@@ -88,7 +89,7 @@
                     <i class="zmdi zmdi-search"></i>
                 </div>
 
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?= $_SESSION['total_productos'] ?>">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
 
@@ -136,7 +137,7 @@
 
     <ul class="main-menu-m">
         <li>
-            <a href="#">Inicio</a>
+            <a href="../view/home.php">Inicio</a>
         </li>
         <li>
             <a href="#">Categorias</a>
@@ -146,11 +147,13 @@
             <a href="#">Favoritos</a>
         </li>
 
-        <li>
-            <a href="login-vendedor.php">Vender</a>
-        </li>
-        <?php
-        if (!isset($_SESSION['sesion'])) { ?>
+        <?php if (!isset($_SESSION['sesion'])) { ?>
+
+            <li>
+                <a href="login-vendedor.php">Vender</a>
+            </li>
+
+
             <li>
                 <a href="login.php">Iniciar Sesion</a>
             </li>

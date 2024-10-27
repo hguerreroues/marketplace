@@ -7,16 +7,19 @@ include "../config/ruta.php";
 // echo '<br>Real path to file: ' . realpath('../model/UsuarioModel.php') . '<br>';
 // echo '<br>Real path to file: ' . realpath('../view/home.php') . '<br>';
 require_once("../model/UsuarioModel.php");
+require_once("../model/DireccionModel.php");
 
 
 class UsuarioController
 {
 
     private $usuarioModel;
+    private $direccionModel;
 
     public function __construct()
     {
         $this->usuarioModel = new Usuario();
+        $this->direccionModel = new Direccion();
     }
 
     public function validarUsuario()
@@ -29,12 +32,25 @@ class UsuarioController
         $validarUsuario = $this->usuarioModel->validarUsuario($email, $password);
 
         if ($validarUsuario != null) {
+
+            $direccionUsuario = $this->direccionModel->obtenerDireccionPorId($validarUsuario["id"]);
+
             //creamos una nueva sesion de PHP y luego le mandamos los datos del usuario que se acaba de validar
             session_start();
             $_SESSION["id"] = $validarUsuario["id"];
             $_SESSION["email"] = $validarUsuario["correo_electronico"];
             $_SESSION["nombre_completo"] = $validarUsuario["nombre_completo"];
+            $_SESSION["id_direccion"] = $validarUsuario["id_direccion"];
+            $_SESSION["id_tarjeta"] = $validarUsuario["id_tarjeta"];
             $_SESSION["sesion"] = "true";
+
+            if($direccionUsuario != null) {
+                $_SESSION["direccion1"] = $direccionUsuario["direccion1"];
+                $_SESSION["direccion2"] = $direccionUsuario["direccion2"];
+                $_SESSION["municipio"] = $direccionUsuario["municipio"];
+                $_SESSION["departamento"] = $direccionUsuario["departamento"];
+                $_SESSION["ciudad"] = $direccionUsuario["ciudad"];
+            }
             header('Location: ../view/home.php');
         } else {
             $_SESSION['mensaje_error'] = "Usuario ó contraseña incorrectos.";

@@ -43,7 +43,7 @@ include "../config/ruta.php";
             <div class="wrap-menu-desktop">
                 <nav class="limiter-menu-desktop container-fluid">
                     <!-- Logo desktop -->
-                    <a href="/marketplace" class="logo">
+                    <a href="/marketplace/" class="logo">
                         <img src="assets/images/craftplace-logo.png" alt="IMG-LOGO">
                     </a>
                 </nav>
